@@ -13,9 +13,7 @@ import { Relation } from '@pepperi-addons/papi-sdk'
 import MyService from './my.service';
 
 export async function install(client: Client, request: Request): Promise<any> {
-    // For page block template uncomment this.
-    // const res = await createPageBlockRelation(client);
-    // return res;
+    await createPageBlockRelation(client);
     return {success:true,resultObject:{}}
 }
 
@@ -35,15 +33,15 @@ export async function downgrade(client: Client, request: Request): Promise<any> 
 async function createPageBlockRelation(client: Client): Promise<any> {
     try {
         // TODO: change to block name (this is the unique relation name and the description that will be on the page builder editor in Blocks section).
-        const blockName = 'BLOCK_NAME_TO_CHANGE';
+        const blockName = 'SurveyBlock';
 
         // TODO: Change to fileName that declared in webpack.config.js
-        const filename = 'block_file_name';
+        const filename = 'survey_block';
 
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
             Name: blockName,
-            Description: `${blockName} block`,
+            Description: `Survey`,
             Type: "NgComponent",
             SubType: "NG11",
             AddonUUID: client.AddonUUID,
