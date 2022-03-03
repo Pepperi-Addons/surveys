@@ -27,7 +27,9 @@
                                 "output": "./assets/ngx-lib"
                             }
                         ],
-                        "styles": [],
+                        "styles": [
+                            "node_modules/survey-angular/modern.min.css"
+                        ],
                         "scripts": [],
                         "customWebpackConfig": {
                             "path": "webpack.config.js"
@@ -41,7 +43,14 @@
                                     "with": "src/environments/environment.prod.ts"
                                 }
                             ],
-                            "optimization": true,
+                            "optimization": {
+                                "scripts": true,
+                                "styles": {
+                                    "minify": true,
+                                    "inlineCritical": false
+                                },
+                                "fonts": true
+                            },
                             "outputHashing": "none",
                             "sourceMap": false,
                             "extractCss": true,

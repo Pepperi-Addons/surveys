@@ -15,8 +15,42 @@ export class BlockEditorComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (!this.hostObject.configuration) {
+            this.hostObject.configuration = {};
+        }
+
+        if (!this.hostObject.configuration.surveyModel) {
+            this.hostObject.configuration.surveyModel = JSON.stringify({
+                elements: [{
+                    name: "FirstName",
+                    title: "Enter your first name:",
+                    type: "text"
+                  }, {
+                    name: "LastName",
+                    title: "Enter your last name:",
+                    type: "text"
+                  }]
+            })
+            this.applyChanges()
+        }
     }
 
     ngOnChanges(e: any): void {
+    }
+
+    modelChanged(data: string) {
+        console.log("model changed")
+        console.log(data)
+        this.hostObject.configuration.surveyModel = data
+        this.applyChanges()
+    }
+
+    applyChanges() {
+        this.hostEvents.emit({
+            action: 'set-configuration',
+    
+            // any object that the block wants to save on the configuration
+            configuration: this.hostObject.configuration
+        })
     }
 }

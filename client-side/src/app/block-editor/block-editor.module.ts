@@ -2,6 +2,7 @@ import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } fr
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PepAddonService } from '@pepperi-addons/ngx-lib';
+import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
 
 import { BlockEditorComponent } from './index';
 
@@ -19,6 +20,7 @@ import { config } from '../addon.config';
                 deps: [PepAddonService]
             }, isolate: false
         }),
+        PepTextareaModule,
     ],
     exports: [BlockEditorComponent],
     providers: [
